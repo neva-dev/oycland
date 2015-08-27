@@ -101,6 +101,8 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
 
         compile 'com.google.guava:guava:18.0'
+        compile 'org.apache.commons:commons-lang3:3.4'
+
     }
 }
 

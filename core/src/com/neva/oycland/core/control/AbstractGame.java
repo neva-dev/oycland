@@ -2,6 +2,7 @@ package com.neva.oycland.core.control;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.neva.oycland.core.control.screen.AbstractScreen;
 import com.neva.oycland.core.control.screen.ScreenManager;
@@ -11,31 +12,50 @@ public abstract class AbstractGame extends Game {
 
     protected GfxContext gfx;
 
-    protected ScreenManager screenMgr;
+    protected ScreenManager screens;
 
-    public abstract AbstractScreen getStartupScreen();
+    protected AssetManager assets;
+
+    public abstract void init();
 
     @Override
     public void create() {
         this.gfx = new GfxContext();
-        this.screenMgr = new ScreenManager();
+        this.screens = new ScreenManager();
+        this.assets = new AssetManager();
 
-        setScreen(getStartupScreen());
+        init();
+
+        setScreen(screens.getFirst());
     }
 
     @Override
     public void render() {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        gl();
 
         super.render();
     }
 
-    public GfxContext getGfxContext() {
+    protected void gl() {
+        Gdx.gl.glClearColor(0f, 0f, 0f, 1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+    }
+
+    public GfxContext getGfx() {
         return gfx;
     }
 
-    public ScreenManager getScreenMgr() {
-        return screenMgr;
+    public ScreenManager getScreens() {
+        return screens;
+    }
+
+    public AssetManager getAssets() {
+        return assets;
+    }
+
+    public void setScreen(String name) {
+        AbstractScreen screen = screens.byName(name);
+        Gdx.app.debug(getClass().getSimpleName(), String.format("Setting game screen: '%s'", name));
+        setScreen(screen);
     }
 }

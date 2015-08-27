@@ -1,15 +1,19 @@
 package com.neva.oycland.core.control.screen;
 
-import com.badlogic.gdx.Screen;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class ScreenManager {
 
-    private Map<String, Screen> screens = new HashMap<String, Screen>();
+    private Map<String, AbstractScreen> screens = Maps.newLinkedHashMap();
 
-    public Screen byName(String name) {
+    public void register(AbstractScreen screen) {
+        screens.put(screen.getName(), screen);
+    }
+
+    public AbstractScreen byName(String name) {
         if (!screens.containsKey(name)) {
             throw new IndexOutOfBoundsException(String.format("Screen '%s' does not exist.", name));
         }
@@ -17,4 +21,11 @@ public class ScreenManager {
         return screens.get(name);
     }
 
+    public AbstractScreen getFirst() {
+        if (screens.isEmpty()) {
+            throw new IndexOutOfBoundsException("At least one startup screen should be added to manager.");
+        }
+
+        return Iterables.getFirst(screens.values(), null);
+    }
 }
