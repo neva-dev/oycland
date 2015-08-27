@@ -1,49 +1,58 @@
 package com.neva.oycland.game.screen;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.neva.oycland.core.control.AbstractGame;
 import com.neva.oycland.core.control.screen.AbstractScreen;
 
 public abstract class StageScreen extends AbstractScreen {
 
-    public static final int WORLD_WIDTH = 100;
+    public static final int WIDTH = 800;
 
-    public static final int WORLD_HEIGHT = 100;
+    public static final int HEIGHT = 450;
 
-    private OrthographicCamera camera;
+    protected final Skin skin;
+
+    protected Table table;
+
+    protected Stage stage;
 
     public StageScreen(AbstractGame game) {
         super(game);
 
-        setupCamera();
+        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+
+        table = new Table(skin);
+        table.setFillParent(true);
+
+        stage = new Stage(new FitViewport(WIDTH, HEIGHT));
+        stage.addActor(table);
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
-    public void show() {
-        super.show();
+    public void resize(int width, int height) {
+        super.resize(width, height);
 
-        setupCamera();
+        stage.getViewport().update(width, height, true);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
 
-        updateCamera();
+        stage.act(delta);
+        stage.draw();
     }
 
-    private void setupCamera() {
-        final float w = Gdx.graphics.getWidth();
-        final float h = Gdx.graphics.getHeight();
+    @Override
+    public void dispose() {
+        super.dispose();
 
-        camera = new OrthographicCamera(WORLD_WIDTH, WORLD_HEIGHT * (h / w));
-        camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
-        camera.update();
-    }
-
-    private void updateCamera() {
-        camera.update();
-        game.getGfx().getBatch().setProjectionMatrix(camera.combined);
+        stage.dispose();
     }
 }

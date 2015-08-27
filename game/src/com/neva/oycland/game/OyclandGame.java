@@ -8,7 +8,7 @@ public class OyclandGame extends AbstractGame {
 
     @Override
     public void init() {
-        screens.register(new TutorialScreen(this));
         screens.register(new MainMenuScreen(this));
+        screens.register(new TutorialScreen(this));
     }
 }
