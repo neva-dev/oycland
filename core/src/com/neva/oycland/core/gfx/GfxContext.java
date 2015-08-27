@@ -1,4 +1,4 @@
-package com.neva.oycland.gfx;
+package com.neva.oycland.core.gfx;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

@@ -1,7 +1,7 @@
-package com.neva.oycland.control.screen;
+package com.neva.oycland.core.control.screen;
 
 import com.badlogic.gdx.Screen;
-import com.neva.oycland.control.AbstractGame;
+import com.neva.oycland.core.control.AbstractGame;
 
 public class AbstractScreen implements Screen {
 

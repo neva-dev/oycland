@@ -36,7 +36,7 @@ project(":desktop") {
     apply plugin: "java"
 
     dependencies {
-        compile project(":core")
+        compile project(":game")
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
@@ -50,7 +50,7 @@ project(":android") {
     configurations { natives }
 
     dependencies {
-        compile project(":core")
+        compile project(":game")
         compile "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi"
         natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
@@ -68,7 +68,7 @@ project(":ios") {
 
 
     dependencies {
-        compile project(":core")
+        compile project(":game")
         compile "org.robovm:robovm-rt:$roboVMVersion"
         compile "org.robovm:robovm-cocoatouch:$roboVMVersion"
         compile "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
@@ -83,7 +83,7 @@ project(":html") {
 
 
     dependencies {
-        compile project(":core")
+        compile project(":game")
         compile "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx:$gdxVersion:sources"
         compile "com.badlogicgames.gdx:gdx-backend-gwt:$gdxVersion:sources"
@@ -101,6 +101,15 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
 
         compile 'com.google.guava:guava:18.0'
+    }
+}
+
+project(":game") {
+    apply plugin: "java"
+
+
+    dependencies {
+        compile project(":core")
     }
 }
 

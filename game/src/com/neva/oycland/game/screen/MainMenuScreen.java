@@ -2,8 +2,8 @@ package com.neva.oycland.game.screen;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.neva.oycland.control.AbstractGame;
-import com.neva.oycland.control.screen.AbstractScreen;
+import com.neva.oycland.core.control.AbstractGame;
+import com.neva.oycland.core.control.screen.AbstractScreen;
 
 public class MainMenuScreen extends AbstractScreen {
 

@@ -1,11 +1,11 @@
-package com.neva.oycland.control;
+package com.neva.oycland.core.control;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.neva.oycland.control.screen.AbstractScreen;
-import com.neva.oycland.control.screen.ScreenManager;
-import com.neva.oycland.gfx.GfxContext;
+import com.neva.oycland.core.control.screen.AbstractScreen;
+import com.neva.oycland.core.control.screen.ScreenManager;
+import com.neva.oycland.core.gfx.GfxContext;
 
 public abstract class AbstractGame extends Game {
 

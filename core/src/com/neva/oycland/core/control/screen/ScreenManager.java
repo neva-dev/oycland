@@ -1,4 +1,4 @@
-package com.neva.oycland.control.screen;
+package com.neva.oycland.core.control.screen;
 
 import com.badlogic.gdx.Screen;
 
