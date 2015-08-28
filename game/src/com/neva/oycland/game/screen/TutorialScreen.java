@@ -1,26 +1,26 @@
 package com.neva.oycland.game.screen;
 
 import com.neva.oycland.core.control.AbstractGame;
-import com.neva.oycland.core.control.Player;
-import com.neva.oycland.core.gfx.GfxUtils;
 import com.neva.oycland.game.actor.Villager;
+
+import static com.neva.oycland.core.control.ActorUtils.placeTopCenter;
+import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
 public class TutorialScreen extends StageScreen {
 
     public static final String NAME = "tutorial";
-
-    private final Player player;
 
     private final Villager villager;
 
     public TutorialScreen(AbstractGame game) {
         super(game);
 
-        villager = new Villager();
-        player = new Player();
+        table.setBackground(loadSprite("images/map.jpg"));
 
-        table.setBackground(GfxUtils.loadDrawableSprite("images/map.jpg"));
-        table.add(villager);
+        villager = new Villager();
+        stage.addActor(villager);
+
+        placeTopCenter(villager);
     }
 
     @Override
@@ -35,17 +35,4 @@ public class TutorialScreen extends StageScreen {
         villager.getController().control(player, delta);
     }
 
-    @Override
-    public void show() {
-        super.show();
-
-        game.getInput().addProcessor(player);
-    }
-
-    @Override
-    public void hide() {
-        super.hide();
-
-        game.getInput().removeProcessor(player);
-    }
 }

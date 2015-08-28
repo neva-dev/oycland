@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.neva.oycland.core.control.AbstractGame;
+import com.neva.oycland.core.control.Player;
 import com.neva.oycland.core.control.screen.AbstractScreen;
 
 public abstract class StageScreen extends AbstractScreen {
@@ -18,9 +19,11 @@ public abstract class StageScreen extends AbstractScreen {
 
     protected final Skin skin;
 
-    protected Table table;
+    protected final Table table;
 
-    protected Stage stage;
+    protected final Stage stage;
+
+    protected final Player player;
 
     public StageScreen(AbstractGame game) {
         super(game);
@@ -32,6 +35,8 @@ public abstract class StageScreen extends AbstractScreen {
 
         stage = new Stage(new FitViewport(WIDTH, HEIGHT));
         stage.addActor(table);
+
+        player = new Player();
     }
 
     @Override
@@ -54,12 +59,14 @@ public abstract class StageScreen extends AbstractScreen {
         super.show();
 
         game.getInput().addProcessor(stage);
+        game.getInput().addProcessor(player);
     }
 
     @Override
     public void hide() {
         super.hide();
 
+        game.getInput().removeProcessor(player);
         game.getInput().removeProcessor(stage);
     }
 

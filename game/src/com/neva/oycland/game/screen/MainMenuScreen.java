@@ -6,7 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.neva.oycland.core.control.AbstractGame;
-import com.neva.oycland.core.gfx.GfxUtils;
+
+import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
 public class MainMenuScreen extends StageScreen {
 
@@ -15,8 +16,7 @@ public class MainMenuScreen extends StageScreen {
     public MainMenuScreen(final AbstractGame game) {
         super(game);
 
-        table.setBackground(GfxUtils.loadDrawableSprite("images/map.jpg"));
-
+        table.setBackground(loadSprite("images/map.jpg"));
         table.center();
 
         {
@@ -37,7 +37,6 @@ public class MainMenuScreen extends StageScreen {
 
             table.add(btn).row();
         }
-
 
         {
             TextButton btn = new TextButton("Quit", skin);
