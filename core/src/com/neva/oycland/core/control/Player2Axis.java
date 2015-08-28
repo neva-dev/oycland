@@ -1,12 +1,45 @@
 package com.neva.oycland.core.control;
 
-public interface Player2Axis {
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.google.common.collect.Maps;
 
-    void moveLeft();
+import java.util.Map;
 
-    void moveRight();
+public class Player2Axis extends InputAdapter {
 
-    void moveUp();
+    private final Map<Integer, Boolean> activeKeys = Maps.newHashMap();
 
-    void moveDown();
+    public Player2Axis() {
+        activeKeys.put(Input.Keys.LEFT, false);
+        activeKeys.put(Input.Keys.RIGHT, false);
+        activeKeys.put(Input.Keys.UP, false);
+        activeKeys.put(Input.Keys.DOWN, false);
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        if (!activeKeys.containsKey(keycode)) {
+            return false;
+        }
+
+        activeKeys.put(keycode, true);
+
+        return true;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        if (!activeKeys.containsKey(keycode)) {
+            return false;
+        }
+
+        activeKeys.put(keycode, false);
+
+        return true;
+    }
+
+    public Map<Integer, Boolean> getActiveKeys() {
+        return activeKeys;
+    }
 }

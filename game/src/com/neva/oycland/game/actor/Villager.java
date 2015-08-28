@@ -1,19 +1,16 @@
 package com.neva.oycland.game.actor;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
-import com.neva.oycland.core.control.Player2Axis;
 import com.neva.oycland.core.gfx.AnimatedImage;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import java.util.Map;
 
-public class Villager extends AnimatedImage implements Player2Axis {
+public class Villager extends AnimatedImage {
 
-    private static final int MOVE_DISTANCE = 100;
+    private static final float MOVE_SPEED = 150f;
 
-    private static final float MOVE_DURATION = 1f;
-
-    private static final VilagerFactory FACTORY = new VilagerFactory();
+    private static final VillagerFactory FACTORY = new VillagerFactory();
 
     private final Stage stage;
 
@@ -23,32 +20,29 @@ public class Villager extends AnimatedImage implements Player2Axis {
         this.stage = stage;
     }
 
-    public void moveLeft() {
-        setAnimation(FACTORY.getMoveLeft());
-        moveAndStand(moveTo(Math.max(0, getX() - MOVE_DISTANCE), getY(), MOVE_DURATION));
-    }
-
-    public void moveRight() {
-        setAnimation(FACTORY.getMoveRight());
-        moveAndStand(moveTo(Math.min(stage.getWidth() - getWidth(), getX() + MOVE_DISTANCE), getY(), MOVE_DURATION));
-    }
-
-    public void moveUp() {
+    public void moveUp(float delta) {
         setAnimation(FACTORY.getMoveUp());
-        moveAndStand(moveTo(getX(), Math.min(stage.getHeight() - getHeight(), getY() + MOVE_DISTANCE), MOVE_DURATION));
     }
 
-    public void moveDown() {
+    public void moveDown(float delta) {
         setAnimation(FACTORY.getMoveDown());
-        moveAndStand(moveTo(getX(), Math.max(0, getY() - MOVE_DISTANCE), MOVE_DURATION));
     }
 
-    private void moveAndStand(MoveToAction move) {
-        addAction(sequence(move, run(new Runnable() {
-            @Override
-            public void run() {
-                setAnimation(FACTORY.getStand());
-            }
-        })));
+    public void control(float delta, Map<Integer, Boolean> activeKeys) {
+        if (activeKeys.get(Input.Keys.LEFT)) {
+            setAnimation(FACTORY.getMoveLeft());
+            setX(Math.max(0, getX() - delta * MOVE_SPEED));
+        } else if (activeKeys.get(Input.Keys.RIGHT)) {
+            setAnimation(FACTORY.getMoveRight());
+            setX(Math.min(stage.getWidth() - getWidth(), getX() + delta * MOVE_SPEED));
+        } else if (activeKeys.get(Input.Keys.DOWN)) {
+            setAnimation(FACTORY.getMoveDown());
+            setY(Math.max(0, getY() - delta * MOVE_SPEED));
+        } else if (activeKeys.get(Input.Keys.UP)) {
+            setAnimation(FACTORY.getMoveUp());
+            setY(Math.min(stage.getHeight() - getHeight(), getY() + delta * MOVE_SPEED));
+        } else {
+            setAnimation(FACTORY.getStand());
+        }
     }
 }

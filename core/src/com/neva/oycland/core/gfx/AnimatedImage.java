@@ -19,7 +19,6 @@ public class AnimatedImage extends Image {
 
     public void setAnimation(Animation animation) {
         this.animation = animation;
-        this.stateTime = 0;
     }
 
     @Override

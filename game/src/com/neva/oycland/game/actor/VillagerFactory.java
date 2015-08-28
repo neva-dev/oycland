@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.neva.oycland.core.gfx.AnimatedImage;
 
-public class VilagerFactory {
+public class VillagerFactory {
 
     private static final String ASSET_PATH = "images/villager.png";
 
@@ -38,7 +38,7 @@ public class VilagerFactory {
 
     private final Animation stand;
 
-    public VilagerFactory() {
+    public VillagerFactory() {
         Texture texture = new Texture(Gdx.files.internal(ASSET_PATH));
         TextureRegion[][] regions = TextureRegion.split(texture, texture.getWidth() / FRAME_COLS, texture.getHeight() / FRAME_ROWS);
 
