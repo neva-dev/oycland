@@ -1,9 +1,11 @@
 package com.neva.oycland.game.actor;
 
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.neva.oycland.core.control.Player2Axis;
 import com.neva.oycland.core.gfx.AnimatedImage;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.moveTo;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
 
 public class Villager extends AnimatedImage implements Player2Axis {
 
@@ -13,27 +15,40 @@ public class Villager extends AnimatedImage implements Player2Axis {
 
     private static final VilagerFactory FACTORY = new VilagerFactory();
 
-    public Villager() {
-        super(FACTORY.getMoveDown());
+    private final Stage stage;
+
+    public Villager(Stage stage) {
+        super(FACTORY.getStand());
+
+        this.stage = stage;
     }
 
     public void moveLeft() {
         setAnimation(FACTORY.getMoveLeft());
-        addAction(moveTo(getX() - MOVE_DISTANCE, getY(), MOVE_DURATION));
+        moveAndStand(moveTo(Math.max(0, getX() - MOVE_DISTANCE), getY(), MOVE_DURATION));
     }
 
     public void moveRight() {
         setAnimation(FACTORY.getMoveRight());
-        addAction(moveTo(getX() + MOVE_DISTANCE, getY(), MOVE_DURATION));
+        moveAndStand(moveTo(Math.min(stage.getWidth() - getWidth(), getX() + MOVE_DISTANCE), getY(), MOVE_DURATION));
     }
 
     public void moveUp() {
         setAnimation(FACTORY.getMoveUp());
-        addAction(moveTo(getX(), getY() + MOVE_DISTANCE, MOVE_DURATION));
+        moveAndStand(moveTo(getX(), Math.min(stage.getHeight() - getHeight(), getY() + MOVE_DISTANCE), MOVE_DURATION));
     }
 
     public void moveDown() {
         setAnimation(FACTORY.getMoveDown());
-        addAction(moveTo(getX(), getY() - MOVE_DISTANCE, MOVE_DURATION));
+        moveAndStand(moveTo(getX(), Math.max(0, getY() - MOVE_DISTANCE), MOVE_DURATION));
+    }
+
+    private void moveAndStand(MoveToAction move) {
+        addAction(sequence(move, run(new Runnable() {
+            @Override
+            public void run() {
+                setAnimation(FACTORY.getStand());
+            }
+        })));
     }
 }

@@ -14,7 +14,7 @@ public class TutorialScreen extends StageScreen {
     public TutorialScreen(AbstractGame game) {
         super(game);
 
-        player = new Player(new Villager());
+        player = new Player(new Villager(stage));
 
         table.setBackground(GfxUtils.loadDrawableSprite("images/map.jpg"));
         table.add(player.getActor());
