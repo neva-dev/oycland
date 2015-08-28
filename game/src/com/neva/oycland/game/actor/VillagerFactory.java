@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.neva.oycland.core.gfx.AnimatedImage;
 
 public class VillagerFactory {
 
@@ -18,11 +17,19 @@ public class VillagerFactory {
 
     private static final int STAND_COL = 4;
 
-    private static final int MOVE_UP = 4;
-
     private static final int MOVE_DOWN = 0;
 
+    private static final int MOVE_DOWN_LEFT = 1;
+
+    private static final int MOVE_DOWN_RIGHT = 2;
+
     private static final int MOVE_LEFT = 3;
+
+    private static final int MOVE_UP = 4;
+
+    private static final int MOVE_UP_LEFT = 5;
+
+    private static final int MOVE_UP_RIGHT = 6;
 
     private static final int MOVE_RIGHT = 7;
 
@@ -38,11 +45,25 @@ public class VillagerFactory {
 
     private final Animation stand;
 
+    private final Animation moveUpLeft;
+
+    private final Animation moveUpRight;
+
+    private final Animation moveDownLeft;
+
+    private final Animation moveDownRight;
+
     public VillagerFactory() {
         Texture texture = new Texture(Gdx.files.internal(ASSET_PATH));
         TextureRegion[][] regions = TextureRegion.split(texture, texture.getWidth() / FRAME_COLS, texture.getHeight() / FRAME_ROWS);
 
         this.stand = new Animation(ANIMATION_FRAME_DELAY, regions[STAND_ROW][STAND_COL]);
+
+        this.moveUpLeft = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP_LEFT]);
+        this.moveUpRight = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP_RIGHT]);
+        this.moveDownLeft = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN_LEFT]);
+        this.moveDownRight = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN_RIGHT]);
+
         this.moveLeft = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_LEFT]);
         this.moveRight = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_RIGHT]);
         this.moveUp = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP]);
@@ -67,5 +88,21 @@ public class VillagerFactory {
 
     public Animation getStand() {
         return stand;
+    }
+
+    public Animation getMoveUpLeft() {
+        return moveUpLeft;
+    }
+
+    public Animation getMoveUpRight() {
+        return moveUpRight;
+    }
+
+    public Animation getMoveDownLeft() {
+        return moveDownLeft;
+    }
+
+    public Animation getMoveDownRight() {
+        return moveDownRight;
     }
 }

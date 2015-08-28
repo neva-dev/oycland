@@ -6,11 +6,11 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
-public class Player2Axis extends InputAdapter {
+public class Player extends InputAdapter {
 
     private final Map<Integer, Boolean> activeKeys = Maps.newHashMap();
 
-    public Player2Axis() {
+    public Player() {
         activeKeys.put(Input.Keys.LEFT, false);
         activeKeys.put(Input.Keys.RIGHT, false);
         activeKeys.put(Input.Keys.UP, false);

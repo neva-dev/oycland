@@ -10,6 +10,8 @@ public class Villager extends AnimatedImage {
 
     private static final float MOVE_SPEED = 150f;
 
+    private static final float MOVE_CROSS_DELAY = 0.7071f; // 1 / square root of 2
+
     private static final VillagerFactory FACTORY = new VillagerFactory();
 
     private final Stage stage;
@@ -29,7 +31,23 @@ public class Villager extends AnimatedImage {
     }
 
     public void control(float delta, Map<Integer, Boolean> activeKeys) {
-        if (activeKeys.get(Input.Keys.LEFT)) {
+        if (activeKeys.get(Input.Keys.UP) && activeKeys.get(Input.Keys.LEFT)) {
+            setAnimation(FACTORY.getMoveUpLeft());
+            setX(Math.max(0, getX() - delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+            setY(Math.min(stage.getHeight() - getHeight(), getY() + delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+        } else if (activeKeys.get(Input.Keys.UP) && activeKeys.get(Input.Keys.RIGHT)) {
+            setAnimation(FACTORY.getMoveUpRight());
+            setX(Math.min(stage.getWidth() - getWidth(), getX() + delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+            setY(Math.min(stage.getHeight() - getHeight(), getY() + delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+        } else if (activeKeys.get(Input.Keys.DOWN) && activeKeys.get(Input.Keys.LEFT)) {
+            setAnimation(FACTORY.getMoveDownLeft());
+            setX(Math.max(0, getX() - delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+            setY(Math.max(0, getY() - delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+        } else if (activeKeys.get(Input.Keys.DOWN) && activeKeys.get(Input.Keys.RIGHT)) {
+            setAnimation(FACTORY.getMoveDownRight());
+            setY(Math.max(0, getY() - delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+            setX(Math.min(stage.getWidth() - getWidth(), getX() + delta * MOVE_SPEED * MOVE_CROSS_DELAY));
+        } else if (activeKeys.get(Input.Keys.LEFT)) {
             setAnimation(FACTORY.getMoveLeft());
             setX(Math.max(0, getX() - delta * MOVE_SPEED));
         } else if (activeKeys.get(Input.Keys.RIGHT)) {

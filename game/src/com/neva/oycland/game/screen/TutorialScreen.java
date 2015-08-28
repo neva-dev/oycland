@@ -1,7 +1,7 @@
 package com.neva.oycland.game.screen;
 
 import com.neva.oycland.core.control.AbstractGame;
-import com.neva.oycland.core.control.Player2Axis;
+import com.neva.oycland.core.control.Player;
 import com.neva.oycland.core.gfx.GfxUtils;
 import com.neva.oycland.game.actor.Villager;
 
@@ -9,7 +9,7 @@ public class TutorialScreen extends StageScreen {
 
     public static final String NAME = "tutorial";
 
-    private final Player2Axis player2Axis;
+    private final Player player;
 
     private final Villager villager;
 
@@ -17,7 +17,7 @@ public class TutorialScreen extends StageScreen {
         super(game);
 
         villager = new Villager(stage);
-        player2Axis = new Player2Axis();
+        player = new Player();
 
         table.setBackground(GfxUtils.loadDrawableSprite("images/map.jpg"));
         table.add(villager);
@@ -32,20 +32,20 @@ public class TutorialScreen extends StageScreen {
     public void render(float delta) {
         super.render(delta);
 
-        villager.control(delta, player2Axis.getActiveKeys());
+        villager.control(delta, player.getActiveKeys());
     }
 
     @Override
     public void show() {
         super.show();
 
-        game.getInput().addProcessor(player2Axis);
+        game.getInput().addProcessor(player);
     }
 
     @Override
     public void hide() {
         super.hide();
 
-        game.getInput().removeProcessor(player2Axis);
+        game.getInput().removeProcessor(player);
     }
 }
