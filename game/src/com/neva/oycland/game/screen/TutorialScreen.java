@@ -16,7 +16,7 @@ public class TutorialScreen extends StageScreen {
     public TutorialScreen(AbstractGame game) {
         super(game);
 
-        villager = new Villager(stage);
+        villager = new Villager();
         player = new Player();
 
         table.setBackground(GfxUtils.loadDrawableSprite("images/map.jpg"));
@@ -32,7 +32,7 @@ public class TutorialScreen extends StageScreen {
     public void render(float delta) {
         super.render(delta);
 
-        villager.control(delta, player.getActiveKeys());
+        villager.getController().control(player, delta);
     }
 
     @Override

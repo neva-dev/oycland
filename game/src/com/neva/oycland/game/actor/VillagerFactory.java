@@ -4,8 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.neva.oycland.core.gfx.AnimatedMoveFactory;
 
-public class VillagerFactory {
+public class VillagerFactory implements AnimatedMoveFactory {
 
     private static final String ASSET_PATH = "images/villager.png";
 
