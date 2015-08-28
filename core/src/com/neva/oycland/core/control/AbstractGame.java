@@ -2,6 +2,7 @@ package com.neva.oycland.core.control;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.neva.oycland.core.control.screen.AbstractScreen;
@@ -16,6 +17,8 @@ public abstract class AbstractGame extends Game {
 
     protected AssetManager assets;
 
+    protected InputMultiplexer input;
+
     public abstract void init();
 
     @Override
@@ -23,10 +26,12 @@ public abstract class AbstractGame extends Game {
         this.gfx = new GfxContext();
         this.screens = new ScreenManager();
         this.assets = new AssetManager();
+        this.input = new InputMultiplexer();
 
         init();
-
         setScreen(screens.getFirst());
+
+        Gdx.input.setInputProcessor(input);
     }
 
     @Override
@@ -57,5 +62,9 @@ public abstract class AbstractGame extends Game {
         AbstractScreen screen = screens.byName(name);
         Gdx.app.debug(getClass().getSimpleName(), String.format("Setting game screen: '%s'", name));
         setScreen(screen);
+    }
+
+    public InputMultiplexer getInput() {
+        return input;
     }
 }

@@ -14,6 +14,8 @@ public abstract class StageScreen extends AbstractScreen {
 
     public static final int HEIGHT = 450;
 
+    public static final String SKIN_PATH = "skin/uiskin.json";
+
     protected final Skin skin;
 
     protected Table table;
@@ -23,15 +25,13 @@ public abstract class StageScreen extends AbstractScreen {
     public StageScreen(AbstractGame game) {
         super(game);
 
-        skin = new Skin(Gdx.files.internal("skin/uiskin.json"));
+        skin = new Skin(Gdx.files.internal(SKIN_PATH));
 
         table = new Table(skin);
         table.setFillParent(true);
 
         stage = new Stage(new FitViewport(WIDTH, HEIGHT));
         stage.addActor(table);
-
-        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -47,6 +47,20 @@ public abstract class StageScreen extends AbstractScreen {
 
         stage.act(delta);
         stage.draw();
+    }
+
+    @Override
+    public void show() {
+        super.show();
+
+        game.getInput().addProcessor(stage);
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
+
+        game.getInput().removeProcessor(stage);
     }
 
     @Override

@@ -12,4 +12,14 @@ public abstract class AbstractScreen extends ScreenAdapter {
     }
 
     public abstract String getName();
+
+    @Override
+    public void show() {
+        super.show();
+    }
+
+    @Override
+    public void hide() {
+        super.hide();
+    }
 }

@@ -1,10 +1,12 @@
 package com.neva.oycland.game.screen;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.neva.oycland.core.control.AbstractGame;
+import com.neva.oycland.core.gfx.GfxUtils;
 
 public class MainMenuScreen extends StageScreen {
 
@@ -12,6 +14,8 @@ public class MainMenuScreen extends StageScreen {
 
     public MainMenuScreen(final AbstractGame game) {
         super(game);
+
+        table.setBackground(GfxUtils.loadDrawableSprite("images/map.jpg"));
 
         table.center();
 
@@ -28,6 +32,19 @@ public class MainMenuScreen extends StageScreen {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
                     game.setScreen(TutorialScreen.NAME);
+                }
+            });
+
+            table.add(btn).row();
+        }
+
+
+        {
+            TextButton btn = new TextButton("Quit", skin);
+            btn.addListener(new ChangeListener() {
+                @Override
+                public void changed(ChangeEvent event, Actor actor) {
+                    Gdx.app.exit();
                 }
             });
 

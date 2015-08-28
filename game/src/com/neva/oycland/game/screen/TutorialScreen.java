@@ -10,7 +10,7 @@ public class TutorialScreen extends StageScreen {
     public TutorialScreen(AbstractGame game) {
         super(game);
 
-        table.setBackground(GfxUtils.loadDrawableSprite("images/gradient.jpg"));
+        table.setBackground(GfxUtils.loadDrawableSprite("images/map.jpg"));
     }
 
     @Override
