@@ -14,15 +14,19 @@ public class VilagerFactory {
 
     private static final int FRAME_ROWS = 8;
 
+    private static final int STAND_ROW = 0;
+
+    private static final int STAND_COL = 4;
+
+    private static final int MOVE_UP = 4;
+
     private static final int MOVE_DOWN = 0;
 
     private static final int MOVE_LEFT = 3;
 
-    private static final int MOVE_UP = 4;
-
     private static final int MOVE_RIGHT = 7;
 
-    private static final float ANIMATION_FRAME_DELAY = 0.025f;
+    private static final float ANIMATION_FRAME_DELAY = 0.05f;
 
     private final Animation moveRight;
 
@@ -38,11 +42,11 @@ public class VilagerFactory {
         Texture texture = new Texture(Gdx.files.internal(ASSET_PATH));
         TextureRegion[][] regions = TextureRegion.split(texture, texture.getWidth() / FRAME_COLS, texture.getHeight() / FRAME_ROWS);
 
-        this.stand = new Animation(ANIMATION_FRAME_DELAY, regions[0][10]);
+        this.stand = new Animation(ANIMATION_FRAME_DELAY, regions[STAND_ROW][STAND_COL]);
         this.moveLeft = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_LEFT]);
         this.moveRight = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_RIGHT]);
-        this.moveUp = new Animation(MOVE_UP, regions[MOVE_UP]);
-        this.moveDown = new Animation(MOVE_DOWN, regions[MOVE_DOWN]);
+        this.moveUp = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP]);
+        this.moveDown = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN]);
     }
 
     public Animation getMoveRight() {

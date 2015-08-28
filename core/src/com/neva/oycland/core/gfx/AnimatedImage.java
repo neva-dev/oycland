@@ -1,6 +1,7 @@
 package com.neva.oycland.core.gfx;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
@@ -23,7 +24,11 @@ public class AnimatedImage extends Image {
 
     @Override
     public void act(float delta) {
-        ((TextureRegionDrawable) getDrawable()).setRegion(animation.getKeyFrame(stateTime += delta, true));
+        stateTime += delta;
+
+        TextureRegion keyFrame = animation.getKeyFrame(stateTime, true);
+        ((TextureRegionDrawable) getDrawable()).setRegion(keyFrame);
+
         super.act(delta);
     }
 }
