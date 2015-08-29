@@ -1,8 +1,11 @@
 package com.neva.oycland.core.control.player;
 
+import com.neva.oycland.core.control.Command;
+import com.neva.oycland.core.control.Controller;
+
 import java.util.Random;
 
-public class Ai implements Controller {
+public class AiRandom implements Controller {
 
     private float stateTime = 0;
 
@@ -11,7 +14,7 @@ public class Ai implements Controller {
     @Override
     public synchronized Command control(float delta) {
         stateTime += delta;
-        if (stateTime >= getIntervalTime()) {
+        if (stateTime == 0 || stateTime >= getIntervalTime()) {
             currentCommand = getRandomCommand();
             stateTime = 0;
         }

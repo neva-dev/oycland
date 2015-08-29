@@ -1,4 +1,4 @@
-package com.neva.oycland.core.control.player;
+package com.neva.oycland.core.control;
 
 public interface Controller {
 

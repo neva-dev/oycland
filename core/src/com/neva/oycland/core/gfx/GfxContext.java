@@ -5,12 +5,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class GfxContext {
 
-    private SpriteBatch batch = new SpriteBatch();
+    private SpriteBatch spriteBatch = new SpriteBatch();
 
     private BitmapFont font = new BitmapFont();
 
-    public SpriteBatch getBatch() {
-        return batch;
+    public SpriteBatch getSpriteBatch() {
+        return spriteBatch;
     }
 
     public BitmapFont getFont() {

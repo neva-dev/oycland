@@ -5,7 +5,7 @@ import com.neva.oycland.core.control.AbstractGame;
 
 public abstract class AbstractScreen extends ScreenAdapter {
 
-    public AbstractGame game;
+    protected AbstractGame game;
 
     public AbstractScreen(AbstractGame game) {
         this.game = game;

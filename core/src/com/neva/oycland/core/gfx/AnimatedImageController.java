@@ -1,8 +1,8 @@
 package com.neva.oycland.core.gfx;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.neva.oycland.core.control.player.Command;
-import com.neva.oycland.core.control.player.Controller;
+import com.neva.oycland.core.control.Command;
+import com.neva.oycland.core.control.Controller;
 
 public class AnimatedImageController {
 
@@ -13,18 +13,17 @@ public class AnimatedImageController {
     private final AnimatedImage actor;
 
     private final AnimatedMoveFactory moveFactory;
-    private final float moveSpeed;
 
-    public AnimatedImageController(Controller controller, AnimatedImage actor, AnimatedMoveFactory moveFactory, float moveSpeed) {
+    public AnimatedImageController(AnimatedImage actor, AnimatedMoveFactory moveFactory, Controller controller) {
         this.controller = controller;
         this.actor = actor;
         this.moveFactory = moveFactory;
-        this.moveSpeed = moveSpeed;
     }
 
     public void control(float delta) {
         final Command command = controller.control(delta);
         final Stage stage = actor.getStage();
+        final float moveSpeed = actor.getMoveSpeed();
 
         switch (command) {
             case MOVE_UP_LEFT:

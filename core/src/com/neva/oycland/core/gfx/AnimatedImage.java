@@ -4,17 +4,23 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.neva.oycland.core.control.Controller;
 
 public class AnimatedImage extends Image {
 
+    private final AnimatedImageController animationController;
+
     protected Animation animation;
+
+    protected float moveSpeed = 100f;
 
     private float stateTime;
 
-    public AnimatedImage(Animation animation) {
-        super(animation.getKeyFrame(0));
+    public AnimatedImage(AnimatedMoveFactory moveFactory, Controller controller) {
+        super(moveFactory.getStand().getKeyFrame(0));
 
-        this.animation = animation;
+        this.animationController = new AnimatedImageController(this, moveFactory, controller);
+        this.animation = moveFactory.getStand();
     }
 
     public void setAnimation(Animation animation) {
@@ -29,5 +35,15 @@ public class AnimatedImage extends Image {
         ((TextureRegionDrawable) getDrawable()).setRegion(keyFrame);
 
         super.act(delta);
+
+        animationController.control(delta);
+    }
+
+    public float getMoveSpeed() {
+        return moveSpeed;
+    }
+
+    public void setMoveSpeed(float moveSpeed) {
+        this.moveSpeed = moveSpeed;
     }
 }

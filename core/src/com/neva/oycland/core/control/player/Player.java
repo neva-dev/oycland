@@ -2,6 +2,8 @@ package com.neva.oycland.core.control.player;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.neva.oycland.core.control.Command;
+import com.neva.oycland.core.control.Controller;
 
 public class Player extends InputAdapter implements Controller {
 
