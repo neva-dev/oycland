@@ -29,7 +29,6 @@ public abstract class AbstractGame extends Game {
         this.input = new InputMultiplexer();
 
         init();
-        setScreen(screens.getFirst());
 
         Gdx.input.setInputProcessor(input);
     }
@@ -58,10 +57,8 @@ public abstract class AbstractGame extends Game {
         return assets;
     }
 
-    public void setScreen(String name) {
-        AbstractScreen screen = screens.byName(name);
-        Gdx.app.debug(getClass().getSimpleName(), String.format("Setting game screen: '%s'", name));
-        setScreen(screen);
+    public void setScreen(Class<? extends AbstractScreen> screenClass, boolean restart) {
+        setScreen(screens.load(this, screenClass, restart));
     }
 
     public InputMultiplexer getInput() {

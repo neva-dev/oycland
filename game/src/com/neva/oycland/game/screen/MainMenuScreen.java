@@ -11,8 +11,6 @@ import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
 public class MainMenuScreen extends StageScreen {
 
-    public static String NAME = "Main menu";
-
     public MainMenuScreen(final AbstractGame game) {
         super(game);
 
@@ -31,7 +29,7 @@ public class MainMenuScreen extends StageScreen {
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.setScreen(TutorialScreen.NAME);
+                    game.setScreen(TutorialScreen.class, false);
                 }
             });
 
@@ -49,11 +47,6 @@ public class MainMenuScreen extends StageScreen {
 
             table.add(btn).row();
         }
-    }
-
-    @Override
-    public String getName() {
-        return NAME;
     }
 }
 

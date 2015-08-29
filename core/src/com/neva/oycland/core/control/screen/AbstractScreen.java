@@ -11,8 +11,6 @@ public abstract class AbstractScreen extends ScreenAdapter {
         this.game = game;
     }
 
-    public abstract String getName();
-
     @Override
     public void show() {
         super.show();

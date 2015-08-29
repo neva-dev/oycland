@@ -8,8 +8,6 @@ import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
 public class TutorialScreen extends StageScreen {
 
-    public static final String NAME = "tutorial";
-
     private final Villager villager;
 
     public TutorialScreen(AbstractGame game) {
@@ -21,11 +19,6 @@ public class TutorialScreen extends StageScreen {
         stage.addActor(villager);
 
         placeTopCenter(villager);
-    }
-
-    @Override
-    public String getName() {
-        return NAME;
     }
 
     @Override
