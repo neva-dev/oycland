@@ -1,6 +1,7 @@
 package com.neva.oycland.game.screen.level;
 
 import com.neva.oycland.game.OyclandGame;
+import com.neva.oycland.game.actor.Ghost;
 import com.neva.oycland.game.actor.Villager;
 import com.neva.oycland.game.screen.LevelScreen;
 
@@ -11,6 +12,8 @@ public class TutorialScreen extends LevelScreen {
 
     private final Villager villager;
 
+    private final Ghost ghost;
+
     public TutorialScreen(OyclandGame game) {
         super(game);
 
@@ -18,6 +21,9 @@ public class TutorialScreen extends LevelScreen {
 
         villager = new Villager();
         stage.addActor(villager);
+
+        ghost = new Ghost();
+        stage.addActor(ghost);
 
         placeTopCenter(villager);
     }

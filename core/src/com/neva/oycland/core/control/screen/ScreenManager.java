@@ -24,7 +24,7 @@ public class ScreenManager {
                 AbstractScreen screen = clazz.getConstructor(gameClass).newInstance(game);
                 screens.put(clazz, screen);
             } catch (ReflectiveOperationException e) {
-                throw new UnsupportedOperationException(String.format("Cannot instantiate screen: '%s'", clazz.getSimpleName()));
+                throw new RuntimeException(String.format("Cannot create a screen: '%s'", clazz.getSimpleName()), e);
             }
         }
 
