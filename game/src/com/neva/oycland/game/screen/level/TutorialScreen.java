@@ -1,16 +1,17 @@
-package com.neva.oycland.game.screen;
+package com.neva.oycland.game.screen.level;
 
-import com.neva.oycland.core.control.AbstractGame;
+import com.neva.oycland.game.OyclandGame;
 import com.neva.oycland.game.actor.Villager;
+import com.neva.oycland.game.screen.LevelScreen;
 
 import static com.neva.oycland.core.control.ActorUtils.placeTopCenter;
 import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
-public class TutorialScreen extends StageScreen {
+public class TutorialScreen extends LevelScreen {
 
     private final Villager villager;
 
-    public TutorialScreen(AbstractGame game) {
+    public TutorialScreen(OyclandGame game) {
         super(game);
 
         table.setBackground(loadSprite("images/map.jpg"));

@@ -11,9 +11,9 @@ import com.neva.oycland.core.gfx.GfxContext;
 
 public abstract class AbstractGame extends Game {
 
-    protected GfxContext gfx;
-
     protected ScreenManager screens;
+
+    protected GfxContext gfx;
 
     protected AssetManager assets;
 
@@ -23,8 +23,8 @@ public abstract class AbstractGame extends Game {
 
     @Override
     public void create() {
+        this.screens = new ScreenManager(getClass());
         this.gfx = new GfxContext();
-        this.screens = new ScreenManager();
         this.assets = new AssetManager();
         this.input = new InputMultiplexer();
 
@@ -57,8 +57,8 @@ public abstract class AbstractGame extends Game {
         return assets;
     }
 
-    public void setScreen(Class<? extends AbstractScreen> screenClass, boolean restart) {
-        setScreen(screens.load(this, screenClass, restart));
+    public void setScreen(Class<? extends AbstractScreen> screenClass) {
+        setScreen(screens.load(this, screenClass));
     }
 
     public InputMultiplexer getInput() {

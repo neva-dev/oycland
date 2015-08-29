@@ -1,36 +1,34 @@
 package com.neva.oycland.game.screen;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.neva.oycland.game.OyclandGame;
-import com.neva.oycland.game.screen.level.TutorialScreen;
 
 import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
-public class MainMenuScreen extends StageScreen {
+public class OptionsScreen extends StageScreen {
 
-    public MainMenuScreen(final OyclandGame game) {
+    public OptionsScreen(final OyclandGame game) {
         super(game);
 
         table.setBackground(loadSprite("images/map.jpg"));
         table.center();
 
         {
-            Label label = new Label("Oycland", skin);
+            Label label = new Label("Paused", skin);
             label.setFontScale(2f);
 
             table.add(label).row();
         }
 
         {
-            TextButton btn = new TextButton("New game", skin);
+            TextButton btn = new TextButton("Resume game", skin);
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.setScreen(TutorialScreen.class);
+                    game.setScreen(game.getProgress().getCurrentLevel());
                 }
             });
 
@@ -38,11 +36,12 @@ public class MainMenuScreen extends StageScreen {
         }
 
         {
-            TextButton btn = new TextButton("Quit", skin);
+            TextButton btn = new TextButton("Return to main menu", skin);
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    Gdx.app.exit();
+                    game.getScreens().unload(game.getProgress().getCurrentLevel().getClass());
+                    game.setScreen(MainMenuScreen.class);
                 }
             });
 
