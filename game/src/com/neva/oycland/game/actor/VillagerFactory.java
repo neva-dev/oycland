@@ -36,74 +36,47 @@ public class VillagerFactory implements AnimatedMoveFactory {
 
     private static final float ANIMATION_FRAME_DELAY = 0.05f;
 
-    private final Animation moveRight;
-
-    private final Animation moveLeft;
-
-    private final Animation moveUp;
-
-    private final Animation moveDown;
-
-    private final Animation stand;
-
-    private final Animation moveUpLeft;
-
-    private final Animation moveUpRight;
-
-    private final Animation moveDownLeft;
-
-    private final Animation moveDownRight;
+    private TextureRegion[][] regions;
 
     public VillagerFactory() {
         Texture texture = new Texture(Gdx.files.internal(ASSET_PATH));
-        TextureRegion[][] regions = TextureRegion.split(texture, texture.getWidth() / FRAME_COLS, texture.getHeight() / FRAME_ROWS);
 
-        this.stand = new Animation(ANIMATION_FRAME_DELAY, regions[STAND_ROW][STAND_COL]);
-
-        this.moveUpLeft = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP_LEFT]);
-        this.moveUpRight = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP_RIGHT]);
-        this.moveDownLeft = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN_LEFT]);
-        this.moveDownRight = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN_RIGHT]);
-
-        this.moveLeft = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_LEFT]);
-        this.moveRight = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_RIGHT]);
-        this.moveUp = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP]);
-        this.moveDown = new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN]);
+        this.regions = TextureRegion.split(texture, texture.getWidth() / FRAME_COLS, texture.getHeight() / FRAME_ROWS);
     }
 
     public Animation getMoveRight() {
-        return moveRight;
+        return  new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_RIGHT]);
     }
 
     public Animation getMoveLeft() {
-        return moveLeft;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_LEFT]);
     }
 
     public Animation getMoveUp() {
-        return moveUp;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP]);
     }
 
     public Animation getMoveDown() {
-        return moveDown;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN]);
     }
 
     public Animation getStand() {
-        return stand;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[STAND_ROW][STAND_COL]);
     }
 
     public Animation getMoveUpLeft() {
-        return moveUpLeft;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP_LEFT]);
     }
 
     public Animation getMoveUpRight() {
-        return moveUpRight;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_UP_RIGHT]);
     }
 
     public Animation getMoveDownLeft() {
-        return moveDownLeft;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN_LEFT]);
     }
 
     public Animation getMoveDownRight() {
-        return moveDownRight;
+        return new Animation(ANIMATION_FRAME_DELAY, regions[MOVE_DOWN_RIGHT]);
     }
 }
