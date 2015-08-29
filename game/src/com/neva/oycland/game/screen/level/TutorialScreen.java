@@ -19,7 +19,7 @@ public class TutorialScreen extends LevelScreen {
 
         table.setBackground(loadSprite("images/map.jpg"));
 
-        villager = new Villager();
+        villager = new Villager(player);
         stage.addActor(villager);
 
         ghost = new Ghost();
@@ -32,7 +32,8 @@ public class TutorialScreen extends LevelScreen {
     public void render(float delta) {
         super.render(delta);
 
-        villager.getController().control(player, delta);
+        villager.getController().control(delta);
+        ghost.getController().control(delta);
     }
 
 }
