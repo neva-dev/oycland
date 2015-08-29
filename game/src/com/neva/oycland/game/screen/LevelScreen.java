@@ -17,6 +17,7 @@ public abstract class LevelScreen extends StageScreen {
     public void show() {
         super.show();
 
+        player.getActiveKeys().clear();
         game.getInput().addProcessor(player);
     }
 

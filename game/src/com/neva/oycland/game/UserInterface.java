@@ -20,6 +20,8 @@ public class UserInterface extends InputAdapter {
                 if (game.getScreen() instanceof LevelScreen) {
                     game.getProgress().setCurrentLevel((LevelScreen) game.getScreen());
                     game.setScreen(OptionsScreen.class);
+                } else if (game.getProgress().getCurrentLevel() != null) {
+                    game.setScreen(game.getProgress().getCurrentLevel());
                 }
                 break;
             default:
