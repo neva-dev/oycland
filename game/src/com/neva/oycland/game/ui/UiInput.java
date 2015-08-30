@@ -1,15 +1,16 @@
-package com.neva.oycland.game;
+package com.neva.oycland.game.ui;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.neva.oycland.game.OyclandGame;
 import com.neva.oycland.game.screen.LevelScreen;
-import com.neva.oycland.game.screen.OptionsScreen;
+import com.neva.oycland.game.screen.PauseScreen;
 
-public class UserInterface extends InputAdapter {
+public class UiInput extends InputAdapter {
 
     private final OyclandGame game;
 
-    public UserInterface(OyclandGame game) {
+    public UiInput(OyclandGame game) {
         this.game = game;
     }
 
@@ -19,7 +20,7 @@ public class UserInterface extends InputAdapter {
             case Input.Keys.ESCAPE:
                 if (game.getScreen() instanceof LevelScreen) {
                     game.getProgress().setCurrentLevel((LevelScreen) game.getScreen());
-                    game.setScreen(OptionsScreen.class);
+                    game.setScreen(PauseScreen.class);
                 } else if (game.getProgress().getCurrentLevel() != null) {
                     game.setScreen(game.getProgress().getCurrentLevel());
                 }

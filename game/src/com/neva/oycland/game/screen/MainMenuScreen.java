@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.neva.oycland.game.OyclandGame;
-import com.neva.oycland.game.screen.level.TutorialScreen;
+import com.neva.oycland.game.screen.level.GraveyardScreen;
 
 import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
@@ -15,14 +15,14 @@ public class MainMenuScreen extends StageScreen {
     public MainMenuScreen(final OyclandGame game) {
         super(game);
 
-        table.setBackground(loadSprite("images/map.jpg"));
-        table.center();
+        ui.setBackground(loadSprite("images/main-menu.jpg"));
+        ui.center();
 
         {
             Label label = new Label("Oycland", skin);
             label.setFontScale(2f);
 
-            table.add(label).row();
+            ui.add(label).row();
         }
 
         {
@@ -30,11 +30,11 @@ public class MainMenuScreen extends StageScreen {
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.setScreen(TutorialScreen.class);
+                    game.setScreen(GraveyardScreen.class);
                 }
             });
 
-            table.add(btn).row();
+            ui.add(btn).row();
         }
 
         {
@@ -46,7 +46,7 @@ public class MainMenuScreen extends StageScreen {
                 }
             });
 
-            table.add(btn).row();
+            ui.add(btn).row();
         }
     }
 }

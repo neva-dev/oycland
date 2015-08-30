@@ -8,19 +8,19 @@ import com.neva.oycland.game.OyclandGame;
 
 import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
-public class OptionsScreen extends StageScreen {
+public class PauseScreen extends StageScreen {
 
-    public OptionsScreen(final OyclandGame game) {
+    public PauseScreen(final OyclandGame game) {
         super(game);
 
-        table.setBackground(loadSprite("images/map.jpg"));
-        table.center();
+        ui.setBackground(loadSprite("images/main-menu.jpg"));
+        ui.center();
 
         {
-            Label label = new Label("Paused", skin);
+            Label label = new Label("Pause", skin);
             label.setFontScale(2f);
 
-            table.add(label).row();
+            ui.add(label).row();
         }
 
         {
@@ -32,11 +32,11 @@ public class OptionsScreen extends StageScreen {
                 }
             });
 
-            table.add(btn).row();
+            ui.add(btn).row();
         }
 
         {
-            TextButton btn = new TextButton("Return to main menu", skin);
+            TextButton btn = new TextButton("Back to main menu", skin);
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
@@ -45,7 +45,7 @@ public class OptionsScreen extends StageScreen {
                 }
             });
 
-            table.add(btn).row();
+            ui.add(btn).row();
         }
     }
 }

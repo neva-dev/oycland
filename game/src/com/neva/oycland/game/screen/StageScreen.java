@@ -3,10 +3,10 @@ package com.neva.oycland.game.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.neva.oycland.core.control.screen.AbstractScreen;
 import com.neva.oycland.game.OyclandGame;
+import com.neva.oycland.game.ui.Ui;
 
 public abstract class StageScreen extends AbstractScreen {
 
@@ -16,22 +16,21 @@ public abstract class StageScreen extends AbstractScreen {
 
     public static final String SKIN_PATH = "skin/uiskin.json";
 
+    protected final Stage stage;
+
     protected final Skin skin;
 
-    protected final Table table;
-
-    protected final Stage stage;
+    protected final Ui ui;
 
     public StageScreen(OyclandGame game) {
         super(game);
 
+        stage = new Stage(new FitViewport(WIDTH, HEIGHT));
+
         skin = new Skin(Gdx.files.internal(SKIN_PATH));
 
-        table = new Table(skin);
-        table.setFillParent(true);
-
-        stage = new Stage(new FitViewport(WIDTH, HEIGHT));
-        stage.addActor(table);
+        ui = new Ui(skin);
+        stage.addActor(ui);
     }
 
     @Override

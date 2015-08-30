@@ -2,6 +2,7 @@ package com.neva.oycland.game;
 
 import com.neva.oycland.core.control.AbstractGame;
 import com.neva.oycland.game.screen.MainMenuScreen;
+import com.neva.oycland.game.ui.UiInput;
 
 public class OyclandGame extends AbstractGame {
 
@@ -10,7 +11,7 @@ public class OyclandGame extends AbstractGame {
     @Override
     public void init() {
         progress = new Progress();
-        input.addProcessor(new UserInterface(this));
+        input.addProcessor(new UiInput(this));
 
         setScreen(MainMenuScreen.class);
     }

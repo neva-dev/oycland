@@ -5,15 +5,21 @@ import com.neva.oycland.game.actor.Ghost;
 import com.neva.oycland.game.actor.Villager;
 import com.neva.oycland.game.screen.LevelScreen;
 
-import static com.neva.oycland.core.gfx.ActorUtils.*;
+import static com.neva.oycland.core.gfx.ActorUtils.placeCenter;
+import static com.neva.oycland.core.gfx.ActorUtils.placeOnRandomEdge;
 import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
-public class TutorialScreen extends LevelScreen {
+public class GraveyardScreen extends LevelScreen {
 
-    public TutorialScreen(OyclandGame game) {
+    @Override
+    public String getName() {
+        return "Graveyard";
+    }
+
+    public GraveyardScreen(OyclandGame game) {
         super(game);
 
-        table.setBackground(loadSprite("images/map.jpg"));
+        ui.setBackground(loadSprite("images/graveyard.png"));
 
         Villager villager = new Villager(player);
         stage.addActor(villager);
