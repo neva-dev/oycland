@@ -11,5 +11,7 @@ public class Villager extends AnimatedImage {
         super(FACTORY, controller);
 
         this.moveSpeed = 150f;
+        
+        resize(0.5f);
     }
 }

@@ -11,5 +11,7 @@ public class Ghost extends AnimatedImage {
         super(FACTORY, new AiRandom());
 
         this.moveSpeed = 50f;
+
+        resize(0.2f);
     }
 }

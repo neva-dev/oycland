@@ -46,4 +46,12 @@ public class AnimatedImage extends Image {
     public void setMoveSpeed(float moveSpeed) {
         this.moveSpeed = moveSpeed;
     }
+
+    public void resize(float widthScale, float heightScale) {
+        setSize(getWidth() * widthScale, getHeight() * heightScale);
+    }
+
+    public void resize(float scale) {
+        resize(scale, scale);
+    }
 }

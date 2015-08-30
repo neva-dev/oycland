@@ -17,11 +17,13 @@ public class TutorialScreen extends LevelScreen {
 
         Villager villager = new Villager(player);
         stage.addActor(villager);
-        placeTop(placeYCenter(villager));
+        placeCenter(villager);
 
-        Ghost ghost = new Ghost();
-        stage.addActor(ghost);
-        placeCenter(ghost);
+        for (int i = 0; i < 20; i++) {
+            Ghost ghost = new Ghost();
+            stage.addActor(ghost);
+            placeOnRandomEdge(ghost);
+        }
     }
 
 }
