@@ -3,7 +3,7 @@ package com.neva.oycland.game.actor;
 import com.neva.oycland.core.control.Controller;
 import com.neva.oycland.core.gfx.AnimatedImage;
 import com.neva.oycland.core.gfx.AnimationFactory;
-import com.neva.oycland.core.gfx.BBox;
+import com.neva.oycland.core.gfx.BoundingBox;
 import com.neva.oycland.game.Progress;
 
 public class AbstractActor extends AnimatedImage {
@@ -16,12 +16,12 @@ public class AbstractActor extends AnimatedImage {
         this.progress = progress;
     }
 
-    public BBox getBBox() {
-        return new BBox(getX(), getY(), getWidth(), getHeight());
+    public BoundingBox getBoundingBox() {
+        return new BoundingBox(this);
     }
 
     public boolean isColliding(AbstractActor actor) {
-        return getBBox().overlaps(actor.getBBox());
+        return getBoundingBox().overlaps(actor.getBoundingBox());
     }
 
 }
