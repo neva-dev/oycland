@@ -14,10 +14,6 @@ public class Progress {
 
     protected LevelScreen currentLevel;
 
-    public LevelScreen getCurrentLevel() {
-        return currentLevel;
-    }
-
     public void endGame() {
         if (currentLevel != null) {
             game.getScreens().unload(currentLevel.getClass());
@@ -34,5 +30,13 @@ public class Progress {
         } else if (game.getProgress().getCurrentLevel() != null) {
             game.setScreen(currentLevel);
         }
+    }
+
+    public void setCurrentLevel(LevelScreen currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+
+    public LevelScreen getCurrentLevel() {
+        return currentLevel;
     }
 }

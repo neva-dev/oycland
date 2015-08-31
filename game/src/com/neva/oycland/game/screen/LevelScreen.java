@@ -8,7 +8,7 @@ import com.neva.oycland.game.ui.Hud;
 
 public abstract class LevelScreen extends StageScreen {
 
-    protected static final Music music = Gdx.audio.newMusic(Gdx.files.internal("music/background.mp3"));
+    protected Music music;
 
     protected Player player;
 
@@ -23,6 +23,8 @@ public abstract class LevelScreen extends StageScreen {
 
         hud = new Hud(this, skin);
         stage.addActor(hud);
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/background.mp3"));
     }
 
     @Override
@@ -31,6 +33,7 @@ public abstract class LevelScreen extends StageScreen {
 
         player.getActiveKeys().clear();
         game.getInput().addProcessor(player);
+
         music.setLooping(true);
         music.play();
     }
@@ -40,6 +43,7 @@ public abstract class LevelScreen extends StageScreen {
         super.hide();
 
         game.getInput().removeProcessor(player);
+
         music.pause();
     }
 }
