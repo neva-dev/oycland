@@ -24,7 +24,7 @@ public abstract class LevelScreen extends StageScreen {
         hud = new Hud(this, skin);
         stage.addActor(hud);
 
-        music = Gdx.audio.newMusic(Gdx.files.internal("music/background.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("music/graveyard.mp3"));
     }
 
     @Override
