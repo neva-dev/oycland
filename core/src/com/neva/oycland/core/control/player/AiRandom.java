@@ -14,11 +14,12 @@ public class AiRandom implements Controller {
 
     @Override
     public synchronized Command control(float delta) {
-        stateTime += delta;
         if (stateTime == 0 || stateTime >= getIntervalTime()) {
             currentCommand = getRandomCommand();
             stateTime = 0;
         }
+
+        stateTime += delta;
 
         return currentCommand;
     }
