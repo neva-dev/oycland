@@ -6,11 +6,11 @@ import com.neva.oycland.game.ui.UiInput;
 
 public class OyclandGame extends AbstractGame {
 
-    private Progress progress;
+    protected Progress progress;
 
     @Override
     public void init() {
-        progress = new Progress();
+        progress = new Progress(this);
         input.addProcessor(new UiInput(this));
 
         setScreen(MainMenuScreen.class);

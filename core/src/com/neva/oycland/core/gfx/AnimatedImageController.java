@@ -12,9 +12,9 @@ public class AnimatedImageController {
 
     private final AnimatedImage actor;
 
-    private final AnimatedMoveFactory moveFactory;
+    private final AnimationFactory moveFactory;
 
-    public AnimatedImageController(AnimatedImage actor, AnimatedMoveFactory moveFactory, Controller controller) {
+    public AnimatedImageController(AnimatedImage actor, AnimationFactory moveFactory, Controller controller) {
         this.controller = controller;
         this.actor = actor;
         this.moveFactory = moveFactory;

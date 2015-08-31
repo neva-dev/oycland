@@ -16,7 +16,7 @@ public class AnimatedImage extends Image {
 
     private float stateTime;
 
-    public AnimatedImage(AnimatedMoveFactory moveFactory, Controller controller) {
+    public AnimatedImage(Controller controller, AnimationFactory moveFactory) {
         super(moveFactory.getStand().getKeyFrame(0));
 
         this.animationController = new AnimatedImageController(this, moveFactory, controller);

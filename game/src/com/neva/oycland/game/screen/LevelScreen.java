@@ -1,10 +1,14 @@
 package com.neva.oycland.game.screen;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.neva.oycland.core.control.player.Player;
 import com.neva.oycland.game.OyclandGame;
 import com.neva.oycland.game.ui.Hud;
 
 public abstract class LevelScreen extends StageScreen {
+
+    protected static final Music music = Gdx.audio.newMusic(Gdx.files.internal("music/background.mp3"));
 
     protected Player player;
 
@@ -27,6 +31,8 @@ public abstract class LevelScreen extends StageScreen {
 
         player.getActiveKeys().clear();
         game.getInput().addProcessor(player);
+        music.setLooping(true);
+        music.play();
     }
 
     @Override
@@ -34,5 +40,6 @@ public abstract class LevelScreen extends StageScreen {
         super.hide();
 
         game.getInput().removeProcessor(player);
+        music.pause();
     }
 }

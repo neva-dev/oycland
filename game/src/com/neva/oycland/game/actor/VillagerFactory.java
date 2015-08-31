@@ -1,8 +1,8 @@
 package com.neva.oycland.game.actor;
 
-import com.neva.oycland.core.gfx.AbstractAnimatedMoveFactory;
+import com.neva.oycland.core.gfx.AbstractAnimationFactory;
 
-public class VillagerFactory extends AbstractAnimatedMoveFactory {
+public class VillagerFactory extends AbstractAnimationFactory {
 
     private static final RegionSettings REGION_SETTINGS;
 

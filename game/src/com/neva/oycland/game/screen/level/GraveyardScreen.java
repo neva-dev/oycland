@@ -1,6 +1,7 @@
 package com.neva.oycland.game.screen.level;
 
 import com.neva.oycland.game.OyclandGame;
+import com.neva.oycland.game.Progress;
 import com.neva.oycland.game.actor.Ghost;
 import com.neva.oycland.game.actor.Villager;
 import com.neva.oycland.game.screen.LevelScreen;
@@ -21,15 +22,17 @@ public class GraveyardScreen extends LevelScreen {
 
         ui.setBackground(loadSprite("images/graveyard.png"));
 
-        Villager villager = new Villager(player);
+        final Progress progress = game.getProgress();
+
+        Villager villager = new Villager(progress, player);
         stage.addActor(villager);
         placeCenter(villager);
 
         for (int i = 0; i < 20; i++) {
-            Ghost ghost = new Ghost();
+            Ghost ghost = new Ghost(progress);
+
             stage.addActor(ghost);
             placeOnRandomEdge(ghost);
         }
     }
-
 }
