@@ -19,7 +19,7 @@ public class OyclandGame extends AbstractGame {
     public void start(Class<? extends LevelScreen> levelClass) {
         screens.unload(levelClass);
         LevelScreen level = (LevelScreen) screens.load(this, levelClass);
-        progress = new Progress(this, level);
+        progress.changeLevel(level);
 
         super.setScreen(level);
     }

@@ -2,6 +2,7 @@ package com.neva.oycland.game.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.utils.Timer;
 import com.neva.oycland.core.control.player.Player;
 import com.neva.oycland.game.OyclandGame;
 import com.neva.oycland.game.ui.Hud;
@@ -14,9 +15,7 @@ public abstract class LevelScreen extends StageScreen {
 
     protected Hud hud;
 
-    public abstract String getName();
-
-    public LevelScreen(OyclandGame game) {
+    public LevelScreen(final OyclandGame game) {
         super(game);
 
         player = new Player();
@@ -25,7 +24,16 @@ public abstract class LevelScreen extends StageScreen {
         stage.addActor(hud);
 
         music = Gdx.audio.newMusic(Gdx.files.internal("music/graveyard.mp3"));
+
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                game.getProgress().incrementTime();
+            }
+        }, 0, 1);
     }
+
+    public abstract String getName();
 
     @Override
     public void show() {
