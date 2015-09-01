@@ -10,7 +10,7 @@ public class DesktopLauncher {
 
         config.width = 1280;
         config.height = 800;
-        config.title = "Oykland";
+        config.title = "Oycland";
         config.samples = 2;
 
 		new LwjglApplication(new OyclandGame(), config);

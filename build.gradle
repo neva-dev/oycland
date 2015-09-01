@@ -17,7 +17,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = 'oykland'
+        appName = 'oycland'
         gdxVersion = '1.6.5'
         roboVMVersion = '1.6.0'
         box2DLightsVersion = '1.4'
