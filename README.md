@@ -17,6 +17,10 @@ Download and run most recent binary JAR from release tab.
 gradle clean desktop:run
 ```
 
+### Screenshot
+
+![Image of Yaktocat](docs/overview.png)
+
 ### Author
 
 2015 &copy; [Neva development](http://neva.zone), http://neva.zone
