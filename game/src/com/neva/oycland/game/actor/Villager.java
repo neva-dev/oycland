@@ -1,10 +1,15 @@
 package com.neva.oycland.game.actor;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.neva.oycland.core.control.Controller;
 import com.neva.oycland.game.Progress;
 
+import java.util.List;
+
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+
 public class Villager extends AbstractActor {
+
+    private static final float FLAME_KILL_RATIO = 0.25f;
 
     private static final VillagerFactory FACTORY = new VillagerFactory();
 
@@ -17,16 +22,27 @@ public class Villager extends AbstractActor {
 
     @Override
     public void act(float delta) {
-        for (Actor actor : getStage().getActors()) {
+        for (AbstractActor actor : getColliding()) {
             if (actor instanceof Ghost) {
-                Ghost ghost = (Ghost) actor;
+                progress.endGame();
+            } else if (actor instanceof Flame) {
+                progress.increaseScore(500);
 
-                if (isColliding(ghost)) {
-                    progress.endGame();
-                }
+                killGhosts();
             }
         }
 
         super.act(delta);
     }
+
+    private void killGhosts() {
+        List<Ghost> all = getNearestActorsOfType(Ghost.class);
+        int ghostToKill = Math.round(FLAME_KILL_RATIO * all.size());
+        List<Ghost> killed = all.subList(0, Math.min(all.size(), ghostToKill));
+
+        for (Ghost ghost : killed) {
+            ghost.addAction(sequence(fadeOut(0.5f), removeActor()));
+        }
+    }
+
 }

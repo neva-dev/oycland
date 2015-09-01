@@ -1,8 +1,8 @@
-package com.neva.oycland.core.gfx;
+package com.neva.oycland.core.gfx.animation;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 
-public interface AnimationFactory {
+public interface AnimatedMoveFactory extends AnimationFactory {
 
     Animation getMoveRight();
 

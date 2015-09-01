@@ -46,11 +46,15 @@ public class Progress {
         }
     }
 
+    public LevelScreen getCurrentLevel() {
+        return currentLevel;
+    }
+
     public void setCurrentLevel(LevelScreen currentLevel) {
         this.currentLevel = currentLevel;
     }
 
-    public LevelScreen getCurrentLevel() {
-        return currentLevel;
+    public void increaseScore(int value) {
+
     }
 }

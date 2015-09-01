@@ -2,23 +2,21 @@ package com.neva.oycland.game.screen.level;
 
 import com.neva.oycland.game.OyclandGame;
 import com.neva.oycland.game.Progress;
+import com.neva.oycland.game.actor.Flame;
 import com.neva.oycland.game.actor.Ghost;
 import com.neva.oycland.game.actor.Villager;
 import com.neva.oycland.game.screen.LevelScreen;
 
-import static com.badlogic.gdx.scenes.scene2d.actions.Actions.*;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
 import static com.neva.oycland.core.gfx.ActorUtils.placeCenter;
 import static com.neva.oycland.core.gfx.ActorUtils.placeOnRandomEdge;
 import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
 public class GraveyardScreen extends LevelScreen {
 
-    private float stateTime = 0;
+    private static final int GHOST_ADD_DELAY = 3;
 
-    @Override
-    public String getName() {
-        return "Graveyard";
-    }
+    private float stateTime = 0;
 
     public GraveyardScreen(OyclandGame game) {
         super(game);
@@ -30,13 +28,22 @@ public class GraveyardScreen extends LevelScreen {
         Villager villager = new Villager(progress, player);
         stage.addActor(villager);
         placeCenter(villager);
+
+        Flame flame = new Flame(progress);
+        stage.addActor(flame);
+        placeCenter(flame);
+    }
+
+    @Override
+    public String getName() {
+        return "Graveyard";
     }
 
     @Override
     public void render(float delta) {
         stateTime += delta;
 
-        if (stateTime == 0 || stateTime >= 3) {
+        if (stateTime == 0 || stateTime >= GHOST_ADD_DELAY) {
             stateTime = 0;
             addGhosts(1);
         }

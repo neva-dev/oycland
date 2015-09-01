@@ -1,4 +1,4 @@
-package com.neva.oycland.core.gfx;
+package com.neva.oycland.core.gfx.animation;
 
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.neva.oycland.core.control.Command;
@@ -12,9 +12,9 @@ public class AnimatedImageController {
 
     private final AnimatedImage actor;
 
-    private final AnimationFactory moveFactory;
+    private final AnimatedMoveFactory moveFactory;
 
-    public AnimatedImageController(AnimatedImage actor, AnimationFactory moveFactory, Controller controller) {
+    public AnimatedImageController(AnimatedImage actor, AnimatedMoveFactory moveFactory, Controller controller) {
         this.controller = controller;
         this.actor = actor;
         this.moveFactory = moveFactory;

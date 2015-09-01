@@ -1,13 +1,14 @@
 package com.neva.oycland.game.actor;
 
-import com.neva.oycland.core.gfx.AbstractAnimationFactory;
+import com.neva.oycland.core.gfx.animation.AbstractMoveFactory;
+import com.neva.oycland.core.gfx.animation.MoveTextureRegionSettings;
 
-public class GhostFactory extends AbstractAnimationFactory {
+public class GhostFactory extends AbstractMoveFactory {
 
-    private static final RegionSettings REGION_SETTINGS;
+    private static final MoveTextureRegionSettings REGION_SETTINGS;
 
     static {
-        REGION_SETTINGS = new RegionSettings();
+        REGION_SETTINGS = new MoveTextureRegionSettings();
         REGION_SETTINGS.assetPath = "images/ghost.png";
         REGION_SETTINGS.frameCols = 6;
         REGION_SETTINGS.frameRows = 8;

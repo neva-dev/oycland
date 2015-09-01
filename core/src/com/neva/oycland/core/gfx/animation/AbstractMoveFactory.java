@@ -1,21 +1,26 @@
-package com.neva.oycland.core.gfx;
+package com.neva.oycland.core.gfx.animation;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class AbstractAnimationFactory implements AnimationFactory {
+public class AbstractMoveFactory implements AnimatedMoveFactory {
 
-    private final RegionSettings settings;
+    private final MoveTextureRegionSettings settings;
 
     private TextureRegion[][] regions;
 
-    public AbstractAnimationFactory(RegionSettings settings) {
+    public AbstractMoveFactory(MoveTextureRegionSettings settings) {
         this.settings = settings;
 
         Texture texture = new Texture(Gdx.files.internal(settings.assetPath));
         this.regions = TextureRegion.split(texture, texture.getWidth() / settings.frameCols, texture.getHeight() / settings.frameRows);
+    }
+
+    @Override
+    public Animation getAnimation() {
+        return getStand();
     }
 
     public Animation getMoveRight() {
@@ -54,35 +59,5 @@ public class AbstractAnimationFactory implements AnimationFactory {
         return new Animation(settings.animationFrameDelay, regions[settings.moveDownRight]);
     }
 
-    public static class RegionSettings {
 
-        public String assetPath;
-
-        public int frameCols;
-
-        public int frameRows;
-
-        public int standRow;
-
-        public int standCol;
-
-        public int moveDown;
-
-        public int moveDownLeft;
-
-        public int moveLeft;
-
-        public int moveDownRight;
-
-        public int moveUp;
-
-        public int moveUpLeft;
-
-        public int moveUpRight;
-
-        public int moveRight;
-
-        public float animationFrameDelay = 0.05f;
-
-    }
 }
