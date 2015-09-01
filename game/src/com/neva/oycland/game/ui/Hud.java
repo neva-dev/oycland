@@ -3,20 +3,29 @@ package com.neva.oycland.game.ui;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.utils.Timer;
+import com.neva.oycland.game.OyclandGame;
+import com.neva.oycland.game.Progress;
 import com.neva.oycland.game.screen.LevelScreen;
 
 public class Hud extends Table {
 
-    private Label timeLabel;
-
-    private float timeElapsed = 0;
-
-    private final Label scoreLabel;
-
-    private long score = 0;
+    protected final Progress progress;
+    protected final Label scoreLabel;
+    protected Label timeLabel;
+    protected int timeElapsed;
 
     public Hud(LevelScreen level, Skin skin) {
         super(skin);
+
+        this.progress = ((OyclandGame) level.getGame()).getProgress();
+
+        level.getTimer().scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                timeElapsed++;
+            }
+        }, 0, 1);
 
         setFillParent(true);
 
@@ -30,17 +39,12 @@ public class Hud extends Table {
 
     @Override
     public void act(float delta) {
-        timeElapsed += delta;
         timeLabel.setText(getTimeFormatted());
-    }
-
-    public void incrementScore(long value) {
-        score += value;
         scoreLabel.setText(getScoreFormatted());
     }
 
     private String getScoreFormatted() {
-        return "Score: " + String.format("%06d", score);
+        return "Score: " + String.format("%06d", progress.getScore());
     }
 
     private String getTimeFormatted() {

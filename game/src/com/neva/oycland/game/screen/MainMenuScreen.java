@@ -30,7 +30,7 @@ public class MainMenuScreen extends StageScreen {
             btn.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
-                    game.setScreen(GraveyardScreen.class);
+                    game.start(GraveyardScreen.class);
                 }
             });
 

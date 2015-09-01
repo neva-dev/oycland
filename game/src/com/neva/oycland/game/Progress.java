@@ -14,6 +14,14 @@ public class Progress {
 
     protected LevelScreen currentLevel;
 
+    private int score;
+
+    public Progress(OyclandGame game, LevelScreen level) {
+        this(game);
+
+        currentLevel = level;
+    }
+
     public Progress(OyclandGame game) {
         this.game = game;
 
@@ -50,11 +58,17 @@ public class Progress {
         return currentLevel;
     }
 
-    public void setCurrentLevel(LevelScreen currentLevel) {
-        this.currentLevel = currentLevel;
-    }
-
     public void increaseScore(int value) {
+        if (value >= 50) {
+            btnSound.play();
+        }
 
+        score += value;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+
 }

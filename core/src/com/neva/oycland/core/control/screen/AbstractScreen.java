@@ -20,4 +20,8 @@ public abstract class AbstractScreen extends ScreenAdapter {
     public void hide() {
         super.hide();
     }
+
+    public AbstractGame getGame() {
+        return game;
+    }
 }

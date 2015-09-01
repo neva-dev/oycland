@@ -3,6 +3,7 @@ package com.neva.oycland.game.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.neva.oycland.core.control.screen.AbstractScreen;
 import com.neva.oycland.game.OyclandGame;
@@ -22,6 +23,8 @@ public abstract class StageScreen extends AbstractScreen {
 
     protected final Ui ui;
 
+    protected final Timer timer;
+
     public StageScreen(OyclandGame game) {
         super(game);
 
@@ -31,6 +34,8 @@ public abstract class StageScreen extends AbstractScreen {
 
         ui = new Ui(skin);
         stage.addActor(ui);
+
+        timer = new Timer();
     }
 
     @Override
@@ -52,6 +57,7 @@ public abstract class StageScreen extends AbstractScreen {
     public void show() {
         super.show();
 
+        timer.start();
         game.getInput().addProcessor(stage);
     }
 
@@ -59,6 +65,7 @@ public abstract class StageScreen extends AbstractScreen {
     public void hide() {
         super.hide();
 
+        timer.stop();
         game.getInput().removeProcessor(stage);
     }
 
@@ -67,5 +74,9 @@ public abstract class StageScreen extends AbstractScreen {
         super.dispose();
 
         stage.dispose();
+    }
+
+    public Timer getTimer() {
+        return timer;
     }
 }

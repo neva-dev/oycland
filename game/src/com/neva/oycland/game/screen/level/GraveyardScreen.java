@@ -1,5 +1,6 @@
 package com.neva.oycland.game.screen.level;
 
+import com.badlogic.gdx.utils.Timer;
 import com.neva.oycland.game.OyclandGame;
 import com.neva.oycland.game.Progress;
 import com.neva.oycland.game.actor.Flame;
@@ -8,15 +9,11 @@ import com.neva.oycland.game.actor.Villager;
 import com.neva.oycland.game.screen.LevelScreen;
 
 import static com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn;
-import static com.neva.oycland.core.gfx.ActorUtils.placeCenter;
-import static com.neva.oycland.core.gfx.ActorUtils.placeOnRandomEdge;
+import static com.badlogic.gdx.scenes.scene2d.actions.Actions.sequence;
+import static com.neva.oycland.core.gfx.ActorUtils.*;
 import static com.neva.oycland.core.gfx.GfxUtils.loadSprite;
 
 public class GraveyardScreen extends LevelScreen {
-
-    private static final int GHOST_ADD_DELAY = 3;
-
-    private float stateTime = 0;
 
     public GraveyardScreen(OyclandGame game) {
         super(game);
@@ -29,9 +26,20 @@ public class GraveyardScreen extends LevelScreen {
         stage.addActor(villager);
         placeCenter(villager);
 
-        Flame flame = new Flame(progress);
-        stage.addActor(flame);
-        placeCenter(flame);
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                addGhosts(1);
+                progress.increaseScore(5);
+            }
+        }, 1, 3);
+
+        timer.scheduleTask(new Timer.Task() {
+            @Override
+            public void run() {
+                addFlame();
+            }
+        }, 10, 10);
     }
 
     @Override
@@ -39,26 +47,24 @@ public class GraveyardScreen extends LevelScreen {
         return "Graveyard";
     }
 
-    @Override
-    public void render(float delta) {
-        stateTime += delta;
+    protected void addFlame() {
+        final Progress progress = ((OyclandGame) game).getProgress();
+        final Flame flame = new Flame(progress);
 
-        if (stateTime == 0 || stateTime >= GHOST_ADD_DELAY) {
-            stateTime = 0;
-            addGhosts(1);
-        }
-
-        super.render(delta);
+        stage.addActor(flame);
+        placeRandom(flame);
+        flame.getColor().a = 0;
+        flame.addAction(sequence(fadeIn(3f)));
     }
 
-    private void addGhosts(int count) {
+    protected void addGhosts(int count) {
         final Progress progress = ((OyclandGame) game).getProgress();
 
         for (int i = 0; i < count; i++) {
             Ghost ghost = new Ghost(progress);
             stage.addActor(ghost);
 
-            ghost.setColor(ghost.getColor().set(ghost.getColor().r, ghost.getColor().g, ghost.getColor().b, 0));
+            ghost.getColor().a = 0;
             ghost.addAction(fadeIn(30f));
 
             placeOnRandomEdge(ghost);
